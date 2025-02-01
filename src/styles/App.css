@@ -8,7 +8,7 @@ body {
 .hero {
   position: relative;
   height: 100vh;
-  background: url('/public/images/hotel bg.avif') no-repeat center center/cover;
+  background: url('/Images/hotel bg.avif') no-repeat center center/cover;
   color: white;
   display: flex;
   flex-direction: column;
