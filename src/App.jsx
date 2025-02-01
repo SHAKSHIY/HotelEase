@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Hero from "./components/Hero";
 import Chatbot from "./components/Chatbot";
 import MyBookings from "./components/MyBookings"; // Import MyBookings
+import ExploreRooms from "./components/ExploreRooms";
 
 const App = () => {
     return(
@@ -17,6 +18,7 @@ const App = () => {
 
                 {/* My Bookings Page */}
                 <Route path="/my-bookings" element={<MyBookings />} />
+                <Route path="/explore-rooms" element={<ExploreRooms />} />
             </Routes>
     );
 };

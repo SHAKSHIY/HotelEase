@@ -105,7 +105,7 @@ const Chatbot = () => {
           <div key={index} className={`chat-message ${msg.sender}`}>
             {msg.sender === "bot" && (
               <img
-                src="https://img.freepik.com/premium-photo/conversations-unleashed-vibrant-purple-chatbot-robot-white-background_983420-135039.jpg"
+                src="/Images/chatbot.avif"
                 alt="Bot"
                 className="w-8 h-8 rounded-full mr-2"
               />
@@ -116,7 +116,7 @@ const Chatbot = () => {
         {isTyping && (
           <div className="chat-message bot">
             <img
-              src="https://img.freepik.com/premium-photo/conversations-unleashed-vibrant-purple-chatbot-robot-white-background_983420-135039.jpg"
+              src="/Images/chatbot.avif"
               alt="Bot"
               className="w-8 h-8 rounded-full mr-2"
             />

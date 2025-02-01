@@ -11,7 +11,8 @@ const MyBookings = () => {
             checkIn: "Feb 15, 2025",
             checkOut: "Feb 18, 2025",
             status: "Confirmed",
-            price: "₹12,500"
+            price: "₹12,500",
+            // image: "/public/images/hotel1.jpg",
         }
     ];
 

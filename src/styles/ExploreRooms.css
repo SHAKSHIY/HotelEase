@@ -1,0 +1,66 @@
+.explore-rooms-container {
+    padding: 20px;
+    text-align: center;
+}
+
+.hotel-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.hotel-card {
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+.hotel-card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.hotel-card h2 {
+    margin-top: 10px;
+    color: #333;
+}
+
+.price {
+    font-weight: bold;
+    color: green;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.book-now, .show-details {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.book-now {
+    background: #4CAF50;
+    color: white;
+}
+
+.show-details {
+    background: #007bff;
+    color: white;
+}
+
+.book-now:hover {
+    background: #388E3C;
+}
+
+.show-details:hover {
+    background: #0056b3;
+}
