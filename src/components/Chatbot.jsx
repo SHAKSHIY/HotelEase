@@ -1,130 +1,91 @@
-import React, { useState, useEffect, useRef } from "react";
-import axios from "axios"; // For API calls
-import "../styles/App.css";
+import React,{ useState, useEffect, useRef } from "react"
+import "../styles/Chatbot.css"
 
 const Chatbot = () => {
-  const [messages, setMessages] = useState([
-    { text: "Hello! How can I assist you today?", sender: "bot" },
-  ]);
-  const [input, setInput] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
-  const chatBodyRef = useRef(null);
+  const [messages, setMessages] = useState([{ text: "Hello! How can I assist you today?", sender: "bot" }])
+  const [input, setInput] = useState("")
+  const [isTyping, setIsTyping] = useState(false)
+  const chatBodyRef = useRef(null)
 
-  // TBO API credentials
-  const TBO_API = {
-    url: "http://api.tbotechnology.in/TBOHolidays_HotelAPI/",
-    username: "hackathontest",
-    password: "Hac@98910186",
-  };
+  const sendMessage = async () => {
+    if (input.trim() === "") return
 
-  // API Call: Fetch hotel data
-  const fetchHotels = async (city, checkInDate, checkOutDate) => {
-    setIsTyping(true);
-  
+    const newMessages = [...messages, { text: input, sender: "user" }]
+    setMessages(newMessages)
+    setInput("")
+    setIsTyping(true)
+
     try {
-      const response = await axios.post("http://localhost:5000/search-hotels", {
-        city,
-        checkInDate,
-        checkOutDate,
-      });
-  
-      const hotels = response.data.HotelSearchResult || [];
-      if (hotels.length > 0) {
-        const hotelMessage = hotels.map(
-          (hotel) =>
-            `<div class="room-card">
-              <h3>${hotel.HotelName}</h3>
-              <p>${hotel.Category} • ${hotel.Address}</p>
-              <a href="#" class="btn">Book Now</a>
-            </div>`
-        ).join("");
-  
-        setMessages((prev) => [
-          ...prev,
-          { text: `Here are some options in ${city}:`, sender: "bot" },
-          { text: hotelMessage, sender: "bot" },
-        ]);
-      } else {
-        setMessages((prev) => [
-          ...prev,
-          { text: "No hotels found for your search.", sender: "bot" },
-        ]);
+      const response = await fetch("http://127.0.0.1:8000/chatbot", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: input }),
+      })
+      const data = await response.json()
+
+      const botMessages = [{ text: data.response, sender: "bot" }]
+
+      if (data.hotels && data.hotels.HotelResult && data.hotels.HotelResult.length > 0) {
+        botMessages.push({ text: "Here are some hotel options:", sender: "bot" })
+        botMessages.push({
+          type: "hotelList",
+          hotels: data.hotels.HotelResult,
+          sender: "bot",
+        })
       }
+
+      setMessages([...newMessages, ...botMessages])
     } catch (error) {
-      console.error("Backend API Error:", error);
-      setMessages((prev) => [
-        ...prev,
-        { text: "Oops! Something went wrong. Please try again later.", sender: "bot" },
-      ]);
+      setMessages([...newMessages, { text: "Something went wrong!", sender: "bot" }])
     } finally {
-      setIsTyping(false);
+      setIsTyping(false)
     }
-  };
-  
+  }
 
-  // Handle user input and send messages
-  const sendMessage = () => {
-    if (input.trim() === "") return;
-
-    const newMessages = [...messages, { text: input, sender: "user" }];
-    setMessages(newMessages);
-    setInput("");
-
-    // Simulate bot thinking
-    setTimeout(() => {
-      setMessages((prev) => [
-        ...prev,
-        { text: "I'm thinking...", sender: "bot", typing: true },
-      ]);
-
-      // Call API if user asks about hotels
-      if (input.toLowerCase().includes("book a room")) {
-        fetchHotels("Delhi", "2025-02-01", "2025-02-05"); // Example city and dates
-      } else {
-        setMessages((prev) => [
-          ...prev,
-          { text: "I didn't understand that. Can you rephrase?", sender: "bot" },
-        ]);
-        setIsTyping(false);
-      }
-    }, 500);
-  };
-
-  // Scroll to the latest message
   useEffect(() => {
     if (chatBodyRef.current) {
-      chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
+      chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight
     }
-  }, [messages]);
+  }, [messages]) //Corrected dependency
 
   return (
     <div className="chatbot">
-      <div className="chat-header">Chatbot</div>
+      <div className="chat-header">Hotel Chatbot</div>
       <div className="chat-body" ref={chatBodyRef}>
-        {messages.map((msg, index) => (
-          <div key={index} className={`chat-message ${msg.sender}`}>
-            {msg.sender === "bot" && (
-              <img
-                src="/Images/chatbot.avif"
-                alt="Bot"
-                className="w-8 h-8 rounded-full mr-2"
-              />
-            )}
-            <p dangerouslySetInnerHTML={{ __html: msg.text }}></p>
-          </div>
-        ))}
+        {messages.map((msg, index) =>
+          msg.type === "hotelList" ? (
+            <div key={index} className="hotels-container">
+              <div className="hotels-grid">
+                {msg.hotels.map((hotel, idx) => (
+                  <div key={idx} className="hotel-card">
+                    <img
+                      src={
+                        hotel.ImageUrl ||
+                        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-01%20233417-NccfPv7ATchog7OzAETHf6i2TDkHUf.png"
+                      }
+                      alt={hotel.HotelCode}
+                      className="hotel-image"
+                    />
+                    <h3 className="hotel-name">{hotel.HotelCode}</h3>
+                    <p className="hotel-location">{hotel.Location || "India"}</p>
+                    <p className="hotel-price">₹{hotel.Rooms[0].TotalFare}/night</p>
+                    <div className="hotel-buttons">
+                      <button className="book-now">Book Now</button>
+                      <button className="show-details">Show Details</button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div key={index} className={`chat-message ${msg.sender}`}>
+              <p>{msg.text}</p>
+            </div>
+          ),
+        )}
         {isTyping && (
           <div className="chat-message bot">
-            <img
-              src="/Images/chatbot.avif"
-              alt="Bot"
-              className="w-8 h-8 rounded-full mr-2"
-            />
-            <div className="typing-indicator">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
+            <p>Typing...</p>
           </div>
         )}
       </div>
@@ -139,7 +100,8 @@ const Chatbot = () => {
         <button onClick={sendMessage}>Send</button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Chatbot;
+export default Chatbot
+
