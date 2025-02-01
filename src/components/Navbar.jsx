@@ -1,4 +1,5 @@
-import React from "react";
+import React from "react"; 
+import { Link } from "react-router-dom"; // Import Link
 import "../styles/App.css";
 import { FaSearch, FaMicrophone, FaCamera } from "react-icons/fa";
 
@@ -6,11 +7,11 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <h1>HotelEase</h1>
-            <a href="#">Home</a>
-            <a href="#">Explore Rooms</a>
-            <a href="#">Offers</a>
-            <a href="#">My Bookings</a>
-            <a href="#">Contact Us</a>
+            <Link to="/">Home</Link>
+            <Link to="/explore">Explore Rooms</Link>
+            <Link to="/offers">Offers</Link>
+            <Link to="/my-bookings">My Bookings</Link>  {/* Add My Bookings Link */}
+            <Link to="/contact">Contact Us</Link>
             <div className="nav-actions">
                 <button className="search-btn">
                     <FaSearch size={18} /> Search
