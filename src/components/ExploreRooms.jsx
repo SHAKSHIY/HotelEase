@@ -7,21 +7,21 @@ const hotels = [
         name: "Grand Royal Hotel",
         location: "Mumbai, India",
         price: "₹7,500/night",
-        image: "/images/hotel1.jpg",
+        image: "/Images/hotel1.jpg",
     },
     {
         id: 2,
         name: "Elite Palace",
         location: "Delhi, India",
         price: "₹9,000/night",
-        image: "/images/hotel2.jpg",
+        image: "/Images/hotel2.jpg",
     },
     {
         id: 3,
         name: "Ocean View Resort",
         location: "Goa, India",
         price: "₹6,800/night",
-        image: "/images/hotel3.jpg",
+        image: "/Images/hotel3.jpg",
     }
 ];
 
