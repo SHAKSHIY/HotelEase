@@ -1,4 +1,4 @@
-## HotelEase - AI-Powered Hotel Booking Chatbot
+# HotelEase - AI-Powered Hotel Booking Chatbot
 
 # Overview
 
