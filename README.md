@@ -52,8 +52,6 @@ HotelEase/
 │   │   ├── ExploreRooms.jsx
 │   │   ├── Hero.jsx
 │   │   ├── MyBookings.jsx
-│   │   ├── HotelList.jsx   # Displays Hotel Recommendations
-│   │   ├── BookingForm.jsx # Hotel Booking Form
 │── backend/
 │   ├── main.py
 │   ├── .env
