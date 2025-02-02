@@ -66,7 +66,8 @@ HotelEase/
 
 # 1 Clone the Repository
 
-git clone https://github.com/SHAKSHIY/HotelEase.git
+In main branch, git clone https://github.com/SHAKSHIY/HotelEase.git
+
 cd HotelEase
 
 # 2 Install Dependencies
@@ -74,16 +75,23 @@ cd HotelEase
 For Frontend
 
 cd HotelEase
+
 npm install
+
 npm run dev
 
 For Backend
 
 cd backend
+
 pip install uvicorn
+
 pip install fastapi
+
 pip install python-dotenv
+
 pip install requests
+
 pip install google-generativeai
 
 # 3 Environment Variables
