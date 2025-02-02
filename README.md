@@ -18,7 +18,7 @@ Travel Itinerary Suggestions: AI recommends must-visit places for a chosen desti
 
 Voice & Text Support: Users can interact with the chatbot using text or voice commands.
 
-## 🏗️ Technology Stack
+# Technology Stack
 
 # Frontend
 
@@ -61,3 +61,46 @@ HotelEase/
 │── public/
 │── README.md
 │── package.json
+
+# Installation & Setup
+
+# 1 Clone the Repository
+
+git clone https://github.com/https://github.com/SHAKSHIY/HotelEase.git
+cd HotelEase
+
+# 2 Install Dependencies
+
+For Frontend
+
+cd HotelEase
+npm install
+npm run dev
+
+For Backend
+
+cd backend
+pip install uvicorn
+pip install fastapi
+pip install python-dotenv
+pip install requests
+pip install google-generativeai
+
+# 3 Environment Variables
+
+Create a .env file in the backend directory and add:
+TBO.com API 
+GEMINI_API_KEY
+
+# API Endpoints
+
+Hotel Search API
+
+GET /api/hotels?location=Paris&budget=200 → Returns hotel listings.
+
+POST /api/bookings → Books a selected hotel.
+
+GET /api/bookings/:userId → Fetches user’s confirmed bookings.
+
+# Demo Video & Screenshots
+
