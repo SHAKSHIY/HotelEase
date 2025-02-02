@@ -10,13 +10,13 @@ Conversational Hotel Booking: Users can search for hotels via chat.
 
 Personalized Recommendations: AI-driven hotel suggestions based on user preferences.
 
-Instant Booking & Payment: Secure transactions with Stripe/Razorpay.
+Instant Booking
 
 My Bookings Management: Users can view, modify, or cancel bookings.
 
 Travel Itinerary Suggestions: AI recommends must-visit places for a chosen destination.
 
-Voice & Text Support: Users can interact with the chatbot using text or voice commands.
+Text Support: Users can interact with the chatbot using text commands.
 
 # Technology Stack
 
