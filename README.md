@@ -66,7 +66,7 @@ HotelEase/
 
 # 1 Clone the Repository
 
-git clone https://github.com/https://github.com/SHAKSHIY/HotelEase.git
+git clone https://github.com/SHAKSHIY/HotelEase.git
 cd HotelEase
 
 # 2 Install Dependencies
